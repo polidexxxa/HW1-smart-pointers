@@ -30,7 +30,7 @@ DualBenchmarkResult RunSingleBenchmark(unsigned int count) {
 
         auto startAlloc = std::chrono::high_resolution_clock::now();
         for (unsigned int i = 0; i < count; i++) {
-            storage[i] = new int(static_cast<int>(i));
+            storage[i] = new int(i);
         }
         auto endAlloc = std::chrono::high_resolution_clock::now();
         res.allocPhase.rawTimeMs = std::chrono::duration<double, std::milli>(endAlloc - startAlloc).count();
@@ -51,7 +51,7 @@ DualBenchmarkResult RunSingleBenchmark(unsigned int count) {
 
         auto startAlloc = std::chrono::high_resolution_clock::now();
         for (unsigned int i = 0; i < count; i++) {
-            storage[i] = MakeUnq<int>(static_cast<int>(i));
+            storage[i] = MakeUnq<int>(i);
         }
         auto endAlloc = std::chrono::high_resolution_clock::now();
         res.allocPhase.customUnqMs = std::chrono::duration<double, std::milli>(endAlloc - startAlloc).count();
@@ -72,7 +72,7 @@ DualBenchmarkResult RunSingleBenchmark(unsigned int count) {
 
         auto startAlloc = std::chrono::high_resolution_clock::now();
         for (unsigned int i = 0; i < count; i++) {
-            storage[i] = std::make_unique<int>(static_cast<int>(i));
+            storage[i] = std::make_unique<int>(i);
         }
         auto endAlloc = std::chrono::high_resolution_clock::now();
         res.allocPhase.stdUnqMs = std::chrono::duration<double, std::milli>(endAlloc - startAlloc).count();
@@ -93,7 +93,7 @@ DualBenchmarkResult RunSingleBenchmark(unsigned int count) {
 
         auto startAlloc = std::chrono::high_resolution_clock::now();
         for (unsigned int i = 0; i < count; i++) {
-            storage[i] = MakeShrd<int>(static_cast<int>(i));
+            storage[i] = MakeShrd<int>(i);
         }
         auto endAlloc = std::chrono::high_resolution_clock::now();
         res.allocPhase.customShrdMs = std::chrono::duration<double, std::milli>(endAlloc - startAlloc).count();
@@ -114,7 +114,7 @@ DualBenchmarkResult RunSingleBenchmark(unsigned int count) {
 
         auto startAlloc = std::chrono::high_resolution_clock::now();
         for (unsigned int i = 0; i < count; i++) {
-            storage[i] = std::make_shared<int>(static_cast<int>(i));
+            storage[i] = std::make_shared<int>(i);
         }
         auto endAlloc = std::chrono::high_resolution_clock::now();
         res.allocPhase.stdShrdMs = std::chrono::duration<double, std::milli>(endAlloc - startAlloc).count();
